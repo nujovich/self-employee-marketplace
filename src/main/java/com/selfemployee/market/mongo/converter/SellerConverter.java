@@ -3,7 +3,9 @@ package com.selfemployee.market.mongo.converter;
 import com.selfemployee.market.model.Seller;
 
 import org.bson.Document;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SellerConverter implements ConverterIF<Seller> {
 
     @Override
