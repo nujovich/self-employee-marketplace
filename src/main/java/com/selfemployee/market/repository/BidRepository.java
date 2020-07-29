@@ -15,6 +15,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BidRepository {
+    
     @Autowired
     private MongoOperations mongoOps;
 

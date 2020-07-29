@@ -24,6 +24,13 @@ public class ProjectDto {
         this.minBid = minBid;
     }
 
+    public ProjectDto(String id, String description, double budget, Date endDateForBids) {
+        this.id = id;
+        this.description = description;
+        this.budget = budget;
+        this.endDateForBids = endDateForBids;
+    }
+
     public String getId() {
         return this.id;
     }

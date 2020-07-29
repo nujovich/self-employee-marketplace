@@ -30,4 +30,8 @@ public class ProjectRepository {
         return project;
     }
 
+    public Project saveProject(Project project) {
+        return mongoOps.save(project);
+    }
+
 }

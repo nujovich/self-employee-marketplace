@@ -20,6 +20,16 @@ public class Project {
     private double budget;
     private Date endDateForBids;
 
+    public Project() {
+        super();
+    }
+
+    public Project(String description, double budget, Date endDateForBids) {
+        this.description = description;
+        this.budget = budget;
+        this.endDateForBids = endDateForBids;
+    }
+
     public ObjectId getId() {
         return id;
     }

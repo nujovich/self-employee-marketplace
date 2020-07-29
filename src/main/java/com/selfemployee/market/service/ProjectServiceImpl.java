@@ -33,5 +33,13 @@ public class ProjectServiceImpl implements ProjectServiceIF {
         }
         return projectDto;
     }
+
+    public ProjectDto createNewProject(ProjectDto projectDto) {
+        Project project = new Project(projectDto.getDescription(), projectDto.getBudget(), projectDto.getEndDateForBids());
+        project = projectRepository.saveProject(project);
+        projectDto.setId(project.getId().toString());
+        return projectDto;
+    }
+
     
 }
