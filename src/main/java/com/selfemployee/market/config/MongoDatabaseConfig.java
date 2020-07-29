@@ -1,8 +1,8 @@
 package com.selfemployee.market.config;
 
 import com.mongodb.ConnectionString;
-import com.mongodb.client.MongoClient;
 import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.selfemployee.market.model.Bid;
 import com.selfemployee.market.model.Project;
@@ -16,10 +16,14 @@ import org.bson.codecs.Codec;
 import org.bson.codecs.configuration.CodecRegistries;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+@Configuration
+@EnableMongoRepositories(basePackages = "com.selfemployee.market.repository")
 public class MongoDatabaseConfig {
 
     @Bean
