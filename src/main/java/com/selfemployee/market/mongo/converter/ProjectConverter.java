@@ -10,14 +10,22 @@ public class ProjectConverter implements ConverterIF<Project> {
 
     @Override
     public Document convertToMongoDocument(Project model) {
-        // TODO Auto-generated method stub
-        return null;
+        Document document = new Document();
+        document.put("_id", model.getId());
+        document.put("description", model.getDescription());
+        document.put("budget", model.getBudget());
+        document.put("endDateForBids", model.getEndDateForBids());
+        return document;
     }
 
     @Override
     public Project convertToModel(Document document) {
-        // TODO Auto-generated method stub
-        return null;
+        Project item = new Project();
+        item.setId(document.getObjectId("_id"));
+        item.setDescription(document.getString("description"));
+        item.setBudget(document.getDouble("budget"));
+        item.setEndDateForBids(document.getDate("endDateForBids"));
+        return item;
     }
     
 }

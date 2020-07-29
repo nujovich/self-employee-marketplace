@@ -10,14 +10,22 @@ public class BidConverter implements ConverterIF<Bid> {
 
     @Override
     public Document convertToMongoDocument(Bid model) {
-        // TODO Auto-generated method stub
-        return null;
+        Document document = new Document();
+        document.put("_id", model.getId());
+        document.put("projectId", model.getProjectId());
+        document.put("sellerId", model.getSellerId());
+        document.put("bid", model.getBid());
+        return document;
     }
 
     @Override
     public Bid convertToModel(Document document) {
-        // TODO Auto-generated method stub
-        return null;
+        Bid item = new Bid();
+        item.setId(document.getObjectId("_id"));
+        item.setProjectId(document.getObjectId("projectId"));
+        item.setSellerId(document.getObjectId("sellerId"));
+        item.setBid(document.getDouble("bid"));
+        return item;
     }
     
 }

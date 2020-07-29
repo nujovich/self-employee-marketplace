@@ -1,6 +1,6 @@
 package com.selfemployee.market.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,7 +18,7 @@ public class Project {
     private ObjectId id;
     private String description;
     private double budget;
-    private LocalDateTime endDateForBids;
+    private Date endDateForBids;
 
     public ObjectId getId() {
         return id;
@@ -44,11 +44,11 @@ public class Project {
         this.budget = budget;
     }
 
-    public LocalDateTime getEndDateForBids() {
+    public Date getEndDateForBids() {
         return endDateForBids;
     }
 
-    public void setEndDateForBids(LocalDateTime endDateForBids) {
+    public void setEndDateForBids(Date endDateForBids) {
         this.endDateForBids = endDateForBids;
     }
 

@@ -3,6 +3,7 @@ package com.selfemployee.market.mongo.codec;
 import com.selfemployee.market.model.Project;
 import com.selfemployee.market.mongo.converter.ProjectConverter;
 
+import org.bson.BsonObjectId;
 import org.bson.BsonReader;
 import org.bson.BsonValue;
 import org.bson.BsonWriter;
@@ -11,6 +12,7 @@ import org.bson.codecs.Codec;
 import org.bson.codecs.CollectibleCodec;
 import org.bson.codecs.DecoderContext;
 import org.bson.codecs.EncoderContext;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ProjectCodec implements CollectibleCodec<Project> {
@@ -26,38 +28,42 @@ public class ProjectCodec implements CollectibleCodec<Project> {
 
     @Override
     public void encode(BsonWriter writer, Project value, EncoderContext encoderContext) {
-        // TODO Auto-generated method stub
+        Document document = projectConverter.convertToMongoDocument(value);
+        documentCodec.encode(writer, document, encoderContext);
 
     }
 
     @Override
     public Class<Project> getEncoderClass() {
-        // TODO Auto-generated method stub
-        return null;
+        return Project.class;
     }
 
     @Override
     public Project decode(BsonReader reader, DecoderContext decoderContext) {
-        // TODO Auto-generated method stub
-        return null;
+        Document document = documentCodec.decode(reader, decoderContext);
+        Project project = projectConverter.convertToModel(document);
+        return project;
     }
 
     @Override
-    public Project generateIdIfAbsentFromDocument(Project document) {
-        // TODO Auto-generated method stub
-        return null;
+    public Project generateIdIfAbsentFromDocument(Project project) {
+        if (!documentHasId(project)) {
+            project.setId(new ObjectId());
+        }
+        return project;
     }
 
     @Override
-    public boolean documentHasId(Project document) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean documentHasId(Project project) {
+        return (project.getId() != null);
     }
 
     @Override
-    public BsonValue getDocumentId(Project document) {
-        // TODO Auto-generated method stub
-        return null;
+    public BsonValue getDocumentId(Project project) {
+        if (!documentHasId(project)) {
+            throw new IllegalStateException("The document does not contain an _id");
+        }
+        return new BsonObjectId(project.getId());
     }
     
 }

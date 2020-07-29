@@ -1,22 +1,22 @@
 package com.selfemployee.market.dto;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 public class ProjectDto {
     
     private String id;
     private String description;
-    private float budget;
-    private LocalDateTime endDateForBids;
-    private float minBid;
+    private double budget;
+    private Date endDateForBids;
+    private double minBid;
 
 
     public ProjectDto() {
         super();
 
     }
-    public ProjectDto(String id, String description, float budget, LocalDateTime endDateForBids, float minBid) {
+    public ProjectDto(String id, String description, double budget, Date endDateForBids, double minBid) {
         this.id = id;
         this.description = description;
         this.budget = budget;
@@ -40,23 +40,23 @@ public class ProjectDto {
         this.description = description;
     }
 
-    public float getBudget() {
+    public double getBudget() {
         return this.budget;
     }
 
-    public void setBudget(float budget) {
+    public void setBudget(double budget) {
         this.budget = budget;
     }
 
-    public LocalDateTime getEndDateForBids() {
+    public Date getEndDateForBids() {
         return this.endDateForBids;
     }
 
-    public void setEndDateForBids(LocalDateTime endDateForBids) {
+    public void setEndDateForBids(Date endDateForBids) {
         this.endDateForBids = endDateForBids;
     }
 
-    public float getMinBid() {
+    public double getMinBid() {
         return this.minBid;
     }
 
@@ -64,30 +64,6 @@ public class ProjectDto {
         this.minBid = minBid;
     }
 
-    public ProjectDto id(String id) {
-        this.id = id;
-        return this;
-    }
-
-    public ProjectDto description(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public ProjectDto budget(float budget) {
-        this.budget = budget;
-        return this;
-    }
-
-    public ProjectDto endDateForBids(LocalDateTime endDateForBids) {
-        this.endDateForBids = endDateForBids;
-        return this;
-    }
-
-    public ProjectDto minBid(float minBid) {
-        this.minBid = minBid;
-        return this;
-    }
 
     @Override
     public boolean equals(Object o) {
