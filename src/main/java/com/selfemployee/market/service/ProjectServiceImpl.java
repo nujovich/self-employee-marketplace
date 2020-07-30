@@ -20,6 +20,7 @@ public class ProjectServiceImpl implements ProjectServiceIF {
     @Autowired
     private BidRepository bidRepository;
 
+    @Override
     public ProjectDto getProjectDetails (String id) {
 
         ObjectId _id = new ObjectId(id);
@@ -34,6 +35,7 @@ public class ProjectServiceImpl implements ProjectServiceIF {
         return projectDto;
     }
 
+    @Override
     public ProjectDto createNewProject(ProjectDto projectDto) {
         Project project = new Project(projectDto.getDescription(), projectDto.getBudget(), projectDto.getEndDateForBids());
         project = projectRepository.saveProject(project);

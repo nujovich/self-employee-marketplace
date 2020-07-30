@@ -43,4 +43,14 @@ public class Bid {
         this.bid = bid;
     }
 
+    public Bid(ObjectId projectId, ObjectId sellerId, double bid) {
+        this.projectId = projectId;
+        this.sellerId = sellerId;
+        this.bid = bid;
+    }
+
+    public Bid() {
+        super();
+    }
+
 }

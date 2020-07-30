@@ -31,4 +31,8 @@ public class BidRepository {
         }
         return minBid;
     }
+
+    public Bid saveBid(Bid bid) {
+        return mongoOps.save(bid);
+    }
 }
