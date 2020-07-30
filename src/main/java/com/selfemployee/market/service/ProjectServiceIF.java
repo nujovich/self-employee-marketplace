@@ -6,4 +6,6 @@ public interface ProjectServiceIF {
     
     public ProjectDto getProjectDetails(String id);
 
+    public ProjectDto createNewProject(ProjectDto projectDto);
+
 }

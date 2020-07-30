@@ -15,6 +15,9 @@ import org.bson.codecs.EncoderContext;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 
+/**
+ * Seller codec class to decode/encode information
+ */
 public class ProjectCodec implements CollectibleCodec<Project> {
 
     @Autowired

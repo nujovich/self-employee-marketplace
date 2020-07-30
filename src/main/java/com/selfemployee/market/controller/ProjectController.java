@@ -1,7 +1,9 @@
 package com.selfemployee.market.controller;
 
 import com.selfemployee.market.dto.ProjectDto;
-import com.selfemployee.market.service.ProjectServiceImpl;
+import com.selfemployee.market.exception.PastDateException;
+import com.selfemployee.market.helper.ValidatorHelper;
+import com.selfemployee.market.service.ProjectServiceIF;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProjectController {
 
     @Autowired
-    private ProjectServiceImpl projectServiceImpl;
+    private ProjectServiceIF projectServiceIF;
+
+    @Autowired
+    private ValidatorHelper validatorHelper;
 
     @GetMapping(value = "/project/{id}")
     public ProjectDto getProjectDetails(@PathVariable String id) {
-        return projectServiceImpl.getProjectDetails(id);
+        return projectServiceIF.getProjectDetails(id);
         
     }
 
     @PostMapping(value = "/project")
-    public ProjectDto createNewProject(@RequestBody ProjectDto projectDto) {
-        return projectServiceImpl.createNewProject(projectDto);
+    public ProjectDto createNewProject(@RequestBody ProjectDto projectDto) throws PastDateException {
+        if(validatorHelper.isDateBeforeToday(projectDto.getEndDateForBids())) {
+            throw new PastDateException("The date selected is a past date.");
+        }
+        return projectServiceIF.createNewProject(projectDto);
     }
 }
