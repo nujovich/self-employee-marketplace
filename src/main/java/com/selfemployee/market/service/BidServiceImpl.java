@@ -15,7 +15,7 @@ public class BidServiceImpl implements BidServiceIF {
     private BidRepository bidRepository;
 
     @Override
-    public BidDto createnewBid(BidDto bidDto) {
+    public BidDto createNewBid(BidDto bidDto) {
         Bid bid = new Bid(new ObjectId(bidDto.getProjectId()), new ObjectId(bidDto.getSellerId()), bidDto.getBid());
         bid = bidRepository.saveBid(bid);
         bidDto.setId(bid.getId().toString());

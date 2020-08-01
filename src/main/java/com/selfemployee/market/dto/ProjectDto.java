@@ -1,101 +1,91 @@
 package com.selfemployee.market.dto;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class ProjectDto {
     
-    private String id;
-    private String description;
-    private double budget;
-    private Date endDateForBids;
-    private double minBid;
+    private final String id;
+    private final String description;
+    private final double budget;
+    private final Date endDateForBids;
+    private final double minBid;
+    private final String name;
+    private final String lastName;
 
-
-    public ProjectDto() {
-        super();
-
-    }
-    public ProjectDto(String id, String description, double budget, Date endDateForBids, double minBid) {
-        this.id = id;
-        this.description = description;
-        this.budget = budget;
-        this.endDateForBids = endDateForBids;
-        this.minBid = minBid;
-    }
-
-    public ProjectDto(String id, String description, double budget, Date endDateForBids) {
-        this.id = id;
-        this.description = description;
-        this.budget = budget;
-        this.endDateForBids = endDateForBids;
-    }
-
+   
     public String getId() {
         return this.id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public double getBudget() {
         return this.budget;
     }
 
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
     public Date getEndDateForBids() {
         return this.endDateForBids;
-    }
-
-    public void setEndDateForBids(Date endDateForBids) {
-        this.endDateForBids = endDateForBids;
     }
 
     public double getMinBid() {
         return this.minBid;
     }
 
-    public void setMinBid(float minBid) {
-        this.minBid = minBid;
+    public String getName() {
+        return name;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof ProjectDto)) {
-            return false;
+    private ProjectDto (ProjectDtoBuilder builder) {
+        this.id = builder.id;
+        this.description = builder.description;
+        this.budget = builder.budget;
+        this.endDateForBids = builder.endDateForBids;
+        this.minBid = builder.minBid;
+        this.name = builder.name;
+        this.lastName = builder.lastName;
+    }
+
+    public static class ProjectDtoBuilder {
+        private final String id;
+        private final String description;
+        private final double budget;
+        private final Date endDateForBids;
+        private double minBid;
+        private String name;
+        private String lastName;
+
+        public ProjectDtoBuilder(String id, String description, double budget, Date endDateForBids) {
+            this.id = id;
+            this.description = description;
+            this.budget = budget;
+            this.endDateForBids = endDateForBids;
         }
-        ProjectDto projectDto = (ProjectDto) o;
-        return Objects.equals(id, projectDto.id) && Objects.equals(description, projectDto.description) && budget == projectDto.budget && Objects.equals(endDateForBids, projectDto.endDateForBids) && minBid == projectDto.minBid;
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, description, budget, endDateForBids, minBid);
-    }
+        public ProjectDtoBuilder setMinBid(double minBid) {
+            this.minBid = minBid;
+            return this;
+        }
 
-    @Override
-    public String toString() {
-        return "{" +
-            " id='" + getId() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", budget='" + getBudget() + "'" +
-            ", endDateForBids='" + getEndDateForBids() + "'" +
-            ", minBid='" + getMinBid() + "'" +
-            "}";
+        public ProjectDtoBuilder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public ProjectDtoBuilder setLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public ProjectDto build() {
+            return new ProjectDto(this);
+        }
+        
     }
 }
