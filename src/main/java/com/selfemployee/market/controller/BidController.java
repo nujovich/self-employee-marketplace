@@ -1,6 +1,7 @@
 package com.selfemployee.market.controller;
 
 import com.selfemployee.market.dto.BidDto;
+import com.selfemployee.market.exception.BidExceedBudgetException;
 import com.selfemployee.market.service.BidServiceIF;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class BidController {
     private BidServiceIF bidServiceIF;
 
     @PostMapping(value = "/bid")
-    public BidDto createNewBid(@RequestBody BidDto bidDto) {
+    public BidDto createNewBid(@RequestBody BidDto bidDto) throws BidExceedBudgetException {
         return bidServiceIF.createNewBid(bidDto);
     }
     

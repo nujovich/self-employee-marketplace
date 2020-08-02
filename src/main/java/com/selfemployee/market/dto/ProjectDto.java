@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class ProjectDto {
     
-    private final String id;
-    private final String description;
-    private final double budget;
-    private final Date endDateForBids;
-    private final double minBid;
-    private final String name;
-    private final String lastName;
+    private String id;
+    private String description;
+    private double budget;
+    private Date endDateForBids;
+    private double minBid;
+    private String name;
+    private String lastName;
 
    
     public String getId() {
@@ -42,6 +42,10 @@ public class ProjectDto {
         return lastName;
     }
 
+    public ProjectDto(){
+        super();
+    }
+
     private ProjectDto (ProjectDtoBuilder builder) {
         this.id = builder.id;
         this.description = builder.description;
@@ -58,8 +62,8 @@ public class ProjectDto {
         private final double budget;
         private final Date endDateForBids;
         private double minBid;
-        private String name;
-        private String lastName;
+        private String name = "N/A";
+        private String lastName = "N/A";
 
         public ProjectDtoBuilder(String id, String description, double budget, Date endDateForBids) {
             this.id = id;

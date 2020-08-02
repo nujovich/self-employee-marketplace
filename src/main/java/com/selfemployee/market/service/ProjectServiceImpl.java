@@ -1,14 +1,10 @@
 package com.selfemployee.market.service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 import com.selfemployee.market.dto.ProjectDto;
 import com.selfemployee.market.helper.ValidatorHelper;
 import com.selfemployee.market.model.Project;
-import com.selfemployee.market.model.Seller;
 import com.selfemployee.market.repository.BidRepository;
 import com.selfemployee.market.repository.ProjectRepository;
 

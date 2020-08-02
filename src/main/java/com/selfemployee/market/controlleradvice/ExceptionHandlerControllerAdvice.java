@@ -1,5 +1,6 @@
 package com.selfemployee.market.controlleradvice;
 
+import com.selfemployee.market.exception.BidExceedBudgetException;
 import com.selfemployee.market.exception.ExceptionResponse;
 import com.selfemployee.market.exception.PastDateException;
 
@@ -15,6 +16,15 @@ public class ExceptionHandlerControllerAdvice {
     @ExceptionHandler(PastDateException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public @ResponseBody ExceptionResponse handlePastDateException(final PastDateException exception) {
+        final ExceptionResponse ex = new ExceptionResponse();
+        ex.setErrorMessage(exception.getMessage());
+        ex.setErrorCode(HttpStatus.BAD_REQUEST.value());
+        return ex;
+    }
+
+    @ExceptionHandler(BidExceedBudgetException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public @ResponseBody ExceptionResponse handleBidExceedBudgetException(final BidExceedBudgetException exception) {
         final ExceptionResponse ex = new ExceptionResponse();
         ex.setErrorMessage(exception.getMessage());
         ex.setErrorCode(HttpStatus.BAD_REQUEST.value());
