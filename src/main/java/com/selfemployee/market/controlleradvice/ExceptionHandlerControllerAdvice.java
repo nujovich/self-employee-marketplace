@@ -2,6 +2,7 @@ package com.selfemployee.market.controlleradvice;
 
 import com.selfemployee.market.exception.BidExceedBudgetException;
 import com.selfemployee.market.exception.ExceptionResponse;
+import com.selfemployee.market.exception.NotMatchingProjectFound;
 import com.selfemployee.market.exception.PastDateException;
 
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,14 @@ public class ExceptionHandlerControllerAdvice {
     @ExceptionHandler(BidExceedBudgetException.class)
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     public @ResponseBody ExceptionResponse handleBidExceedBudgetException(final BidExceedBudgetException exception) {
+        final ExceptionResponse ex = new ExceptionResponse();
+        ex.setErrorMessage(exception.getMessage());
+        ex.setErrorCode(HttpStatus.BAD_REQUEST.value());
+        return ex;
+    }
+    @ExceptionHandler(NotMatchingProjectFound.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public @ResponseBody ExceptionResponse handleNotMatchingProjectException(final NotMatchingProjectFound exception) {
         final ExceptionResponse ex = new ExceptionResponse();
         ex.setErrorMessage(exception.getMessage());
         ex.setErrorCode(HttpStatus.BAD_REQUEST.value());

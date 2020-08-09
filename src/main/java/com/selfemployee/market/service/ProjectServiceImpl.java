@@ -54,7 +54,8 @@ public class ProjectServiceImpl implements ProjectServiceIF {
 
     @Override
     public ProjectDto createNewProject(ProjectDto projectDto) {
-        Project project = new Project(projectDto.getDescription(), projectDto.getBudget(), projectDto.getEndDateForBids());
+        Project project = new Project.ProjectBuilder(projectDto.getDescription(), 
+        projectDto.getBudget(), projectDto.getEndDateForBids()).build();
         project = projectRepository.saveProject(project);
         projectDto = new ProjectDto.ProjectDtoBuilder(project.getId().toString(), project.getDescription(), 
                 project.getBudget(), project.getEndDateForBids()).build();

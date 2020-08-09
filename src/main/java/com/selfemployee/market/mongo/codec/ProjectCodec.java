@@ -51,7 +51,8 @@ public class ProjectCodec implements CollectibleCodec<Project> {
     @Override
     public Project generateIdIfAbsentFromDocument(Project project) {
         if (!documentHasId(project)) {
-            project.setId(new ObjectId());
+            new Project.ProjectBuilder(project.getDescription(), project.getBudget(), project.getEndDateForBids())
+            .setId(new ObjectId()).build();
         }
         return project;
     }

@@ -20,11 +20,9 @@ public class ProjectConverter implements ConverterIF<Project> {
 
     @Override
     public Project convertToModel(Document document) {
-        Project item = new Project();
-        item.setId(document.getObjectId("_id"));
-        item.setDescription(document.getString("description"));
-        item.setBudget(document.getDouble("budget"));
-        item.setEndDateForBids(document.getDate("endDateForBids"));
+        Project item = new Project.ProjectBuilder(document.getString("description"), 
+        document.getDouble("budget"), document.getDate("endDateForBids")).setId(document.getObjectId("_id"))
+        .build();
         return item;
     }
     

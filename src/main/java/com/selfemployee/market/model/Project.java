@@ -24,42 +24,48 @@ public class Project {
         super();
     }
 
-    public Project(String description, double budget, Date endDateForBids) {
-        this.description = description;
-        this.budget = budget;
-        this.endDateForBids = endDateForBids;
+    private Project(ProjectBuilder builder) {
+        this.id = builder.id;
+        this.description = builder.description;
+        this.budget = builder.budget;
+        this.endDateForBids = builder.endDateForBids;
     }
 
     public ObjectId getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public double getBudget() {
         return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
-    }
+    } 
 
     public Date getEndDateForBids() {
         return endDateForBids;
     }
 
-    public void setEndDateForBids(Date endDateForBids) {
-        this.endDateForBids = endDateForBids;
-    }
+    public static class ProjectBuilder {
+        private ObjectId id;
+        private final String description;
+        private final double budget;
+        private final Date endDateForBids;
 
+        public ProjectBuilder(String description, double budget, Date endDateForBids) {
+            this.description = description;
+            this.budget = budget;
+            this.endDateForBids = endDateForBids;
+        }
+
+        public ProjectBuilder setId(ObjectId id) {
+            this.id = id;
+            return this;
+        }
+
+        public Project build() {
+            return new Project(this);
+        }
+    }
 }
