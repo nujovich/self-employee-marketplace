@@ -45,9 +45,9 @@ public class ProjectRepository {
 
     public Document getProjectForAutoBid(double bid) {
         AggregateIterable<Document> projectDocuments = mongoOps.getCollection("projects").aggregate(Arrays.asList(
-             Aggregates.match(Filters.lte("budget", bid)),
+             Aggregates.match(Filters.gte("budget", bid)),
              Aggregates.match(Filters.gt("endDateForBids", validatorHelper.asDate(LocalDate.now()))),
-             Aggregates.project(new Document("min", new Document("$subtract", Arrays.asList(bid, "$budget"))))));
+             Aggregates.project(new Document("min", new Document("$subtract", Arrays.asList("$budget",bid))))));
              Document project = StreamSupport.stream(projectDocuments.spliterator(), false)
              .min((d1, d2) -> d1.getDouble("min").compareTo(d2.getDouble("min"))).orElse(null);
          return project;
